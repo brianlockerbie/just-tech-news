@@ -2,14 +2,22 @@ const router = require('express').Router();
 const { User } = require('../../models');
 
 // GET /api/users
-router.get('/', (req, res) => {
-    // Access our User model and run .findAll() method)
-    User.findAll()
-      .then(dbUserData => res.json(dbUserData))
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
+User.findOne({
+  attributes: { exclude: ['password'] },
+  where: {
+    id: req.params.id
+  }
+})
+  .then(dbUserData => {
+    if (!dbUserData) {
+      res.status(404).json({ message: 'No user found with this id' });
+      return;
+    }
+    res.json(dbUserData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
   });
 
 // GET /api/users/1
