@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/brianlockerbie/just-tech-news#readme",
   "dependencies": {
+    "bcrpyt": "^2.0.0",
+    "bcrypt": "^5.0.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "jest": "^28.1.2",
     "mysql2": "^2.3.3",
     "sequelize": "^6.19.0"
   }
